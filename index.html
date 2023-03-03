@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/png" href="assets/logo.svg">
+	<link rel="stylesheet" href="css/style.css">
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Lato:wght@400;700&family=Roboto&display=swap"
+		rel="stylesheet">
+	<title>Les petits plats</title>
+</head>
+<body>
+	<div class="wrapper">
+		<!--header section-->
+		<header class="header" role="banner">
+			<img src="assets/logo.svg" alt="logo" class="header__logo">
+			<h1 class="header__title">Les petits plats</h1>
+		</header>
+		<!-- main search section-->
+		<nav class="searchbar">
+			<form action="#" role="search" class="searchbar__form" aria-label="Rechercher sur le site">
+				<input type="search" class="searchbar__input" placeholder="Rechercher une recette">
+			</form>
+			<img src="assets/search.svg" alt="" class="searchbar__icon" aria-hidden="true">
+
+		<!--filter section-->
+			<div class="tag-row"></div>
+			<div class="filter">
+				<div class="filter__container filter__container--ingredients">
+					<button class="filter__btn filter__btn--ingredients">
+						<input type="text" class="filter__input filter__input--ingredients" placeholder="Ingrédients">
+						<img src="assets/arrow.svg" alt="" class="filter__arrow" aria-hidden="true">
+					</button>
+					<div class="filter__collapse filter__collapse--ingredients">
+						<ul class="filter__list filter__list--ingredients"></ul>
+					</div>
+				</div>
+				<div class="filte__container filter__container--appliances">
+					<button class="filter__btn filter__btn--appliances">
+						<input type="text" class="filter__input filter__input--appliances" placeholder="Appareils">
+						<img src="assets/arrow.svg" alt="" class="filter__arrow" aria-hidden="true">
+					</button>
+					<div class="filter__collapse filter__collapse--appliances">
+						<ul class="filter__list filter__list--appliances"></ul>
+					</div>
+				</div>
+				<div class="filter__container filter__container--utensils">
+					<button class="filter__btn filter__btn--utensils">
+						<input type="text" class="filter__input filter__input--utensils" placeholder="Ustensiles">
+						<img src="assets/arrow.svg" alt="" class="filter__arrow" aria-hidden="true">
+					</button>
+					<div class="filter__collapse filter__collapse--utensils">
+						<ul class="filter__list filter__list--utensils"></ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!--main section-->
+		<main class="recipes-section">
+		</main>
+	</div>
+	<script type="module" src="scripts/index.js"></script>
+</body>
+</html>
