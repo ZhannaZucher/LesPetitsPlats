@@ -79,8 +79,22 @@ h1, h2, h3, h4, h5, h6 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+}
+@media screen and (max-width: 768px) {
+  .filter {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+}
+@media screen and (max-width: 576px) {
+  .filter__container {
+    width: 100%;
+  }
 }
 .filter__btn {
   margin: 20px 20px 20px 0;
@@ -95,6 +109,11 @@ h1, h2, h3, h4, h5, h6 {
       -ms-flex-align: center;
           align-items: center;
   padding: 0 20px;
+}
+@media screen and (max-width: 576px) {
+  .filter__btn {
+    width: 100%;
+  }
 }
 .filter__btn--ingredients {
   background-color: #3282F7;
@@ -130,6 +149,11 @@ h1, h2, h3, h4, h5, h6 {
 .card {
   max-width: 380px;
   height: 370px;
+}
+@media screen and (max-width: 768px) {
+  .card {
+    max-width: 100%;
+  }
 }
 .card__view {
   width: 100%;
@@ -273,7 +297,7 @@ body {
 }
 @media screen and (max-width: 768px) {
   .recipes-section {
-    grid-template-columns: repeat(1, 100%);
+    grid-template-columns: repeat(1, 1fr);
     row-gap: 20px;
   }
 }/*# sourceMappingURL=style.css.map */

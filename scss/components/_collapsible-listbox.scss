@@ -6,9 +6,16 @@
 .filter {
 	width: 100%;
 	display: flex;
-	flex-wrap: wrap;
+	@include small-devices {
+		flex-direction: column;
+		align-items: flex-start;
+	}
 
-	&__container {}
+	&__container {
+		@include x-small-devices {
+			width: 100%;
+		}
+	}
 
 	&__container--ingredients {}
 
@@ -21,6 +28,9 @@
 		display: flex;
 		align-items: center;
 		padding: 0 20px;
+		@include x-small-devices {
+			width: 100%;
+		}
 	}
 
 	&__btn--ingredients {

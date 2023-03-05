@@ -1,6 +1,9 @@
 .card {
 	max-width: 380px;
 	height: 370px;
+	@include small-devices {
+		max-width: 100%;
+	}
 
 	&__view {
 		width: 100%;
