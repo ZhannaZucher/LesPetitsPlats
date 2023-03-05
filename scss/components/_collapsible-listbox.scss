@@ -1,0 +1,76 @@
+//à mettre dans components
+.tag-container {
+	width: 100%;
+}
+
+.filter {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+
+	&__container {}
+
+	&__container--ingredients {}
+
+	&__btn {
+		margin: 20px 20px 20px 0;
+		height: 69px;
+		width: 170px;
+		border-radius: 5px;
+		color: #fff;
+		display: flex;
+		align-items: center;
+		padding: 0 20px;
+	}
+
+	&__btn--ingredients {
+		background-color: $clr-blue;
+	}
+
+	&__input {
+		background-color: inherit;
+		color: inherit;
+		font-weight: 700;
+		font-size: 1.2em;
+		width: 90%;
+	}
+		&__input::placeholder{
+			color: inherit;
+		}
+
+	&__input--ingredients {}
+
+	&__arrow {}
+
+	&__collapse {}
+
+	&__collapse--ingredients {}
+
+	&__list {}
+
+	&__list--ingredients {}
+
+	&__container--appliances {}
+
+	&__btn--appliances {
+		background-color: $clr-green;
+	}
+
+	&__input--appliances {}
+
+	&__collapse--appliances {}
+
+	&__list--appliances {}
+
+	&__container--utensils {}
+
+	&__btn--utensils {
+		background-color: $clr-orange;
+	}
+
+	&__input--utensils {}
+
+	&__collapse--utensils {}
+
+	&__list--utensils {}
+}

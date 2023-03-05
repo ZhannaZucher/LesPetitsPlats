@@ -1,17 +1,6 @@
 @import "base/normalize";
-
-
-//@import "./utils/variables";
-//@import "./utils/functions";
-//@import "./utils/mixins";
-//@import "./utils/extensions";
-//@import "./base/base";
-//@import "./base/typography";
-//@import "./components/buttons";
-//@import "./layouts/header";
-//@import "./layouts/nav";
-//@import "./layouts/container";
-//@import "./layouts/form";
-//@import "./pages/work";
-//@import "./pages/about";
-//@import "./pages/project";
+@import "utils/variables";
+@import "utils/mixins";
+@import "components/collapsible-listbox";
+@import "components/recipe-card";
+@import "pages/index";

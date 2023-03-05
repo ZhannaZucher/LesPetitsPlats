@@ -1,0 +1,18 @@
+//mixins for responsive:
+@mixin medium-devices {
+	@media screen and (max-width:map-get($breakpoints, medium)) {
+		@content
+	}
+};
+
+@mixin small-devices {
+	@media screen and (max-width:map-get($breakpoints, small)) {
+		@content
+	}
+};
+
+@mixin x-small-devices {
+	@media screen and (max-width:map-get($breakpoints, x-small)) {
+		@content
+	}
+}
