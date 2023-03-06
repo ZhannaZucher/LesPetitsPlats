@@ -35,6 +35,9 @@ body {
 		position: relative;
 		width: 100%;
 		display: block;
+		@include small-devices {
+			margin-bottom: 20px;
+		}
 	}
 	&__input {
 		width: 100%;
