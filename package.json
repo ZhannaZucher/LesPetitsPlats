@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "eslint": "8.35.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "lint": "eslint ."
+  }
+}
