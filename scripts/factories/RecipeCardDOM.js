@@ -44,6 +44,7 @@ export class RecipeCardDOM {
 		let quantity;
 		let unit; 
 		for (let j = 0; j < this.recipes[i].ingredients.length; j++) {
+			//dans le cas où la quantité / unité pour l'ingrédient[j] ne sont pas renseignées, on laisse vide:
 			quantity = this.recipes[i].ingredients[j].quantity !== undefined ? this.recipes[i].ingredients[j].quantity : "";
 
 			unit = this.recipes[i].ingredients[j].unit !== undefined ? this.recipes[i].ingredients[j].unit : "";
