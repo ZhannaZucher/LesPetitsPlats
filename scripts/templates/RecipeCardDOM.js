@@ -1,9 +1,3 @@
-/*
-TODO:
-1. OK fonction DOM template for each card 
-2. OK fonction filling ingredients dans <ul></ul>
-*/
-
 export class RecipeCardDOM {
 	constructor(recipes) {
 		this.recipes = recipes;
@@ -14,7 +8,10 @@ export class RecipeCardDOM {
 	displayCard() {
 		this.recipesContainer.innerHTML = this.buildCardDOM();
 	}
-
+/**
+ * permet de construire la structure DOM de la carte recette
+ * @returns {string}
+ */
 	buildCardDOM() {
 		let recipeCard = "";
 		for (let i = 0; i < this.recipes.length; i++) {
@@ -39,6 +36,11 @@ export class RecipeCardDOM {
 		return recipeCard;
 	}
 
+	/**
+	 * permet de constuire la structure DOM pour la liste d'ingrédients de la recette
+	 * @param {{ingredient: string, quantity: number, unit: string}[]} i liste d'ingrédients pour la recette
+	 * @returns {string}
+	 */
 	getIngredientsList(i) {
 		let list = "";
 		let quantity;
@@ -49,7 +51,9 @@ export class RecipeCardDOM {
 
 			unit = this.recipes[i].ingredients[j].unit !== undefined ? this.recipes[i].ingredients[j].unit : "";
 
-			list += `<li><strong>${this.recipes[i].ingredients[j].ingredient}:</strong> ${quantity} ${unit}</li>`;
+			list += `<li><b>${this.recipes[i].ingredients[j].ingredient}</b>`;
+			
+			quantity ? list += `: ${quantity} ${unit}</li>` : `</li>`;
 		}
 		return list;
 	}
