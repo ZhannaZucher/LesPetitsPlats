@@ -4,7 +4,6 @@ TODO
 OK A. fonction pour récupérer les arrays de tags :
 OK 1. parcourrir les recettes et récupérer les ingrédients / appliances /ustensils dans 3 tableaux
 OK 2. supprimer les doublons dans tableaux avec Array.from(new Set(array avec doublons)) 
-+ formatter : 1ière lettre en Majuscule, le reste to lowerCase
 
 B. fonction qui crée la structure DOM  pour chaque tags' container
 1. parcourrir les tableaux des tags récupérés et les enrober en <li></li>
@@ -27,7 +26,7 @@ function getTagsArray(recipes, type) {
 		case "ingredients": 
 		recipes.forEach(recipe => {
 			if (recipe.ingredients.length) {
-				const ingredientsList = recipe.ingredients.map(ingredient => ingredient.ingredient);
+				const ingredientsList = recipe.ingredients.map((ingredient) => ingredient.ingredient.toLowerCase());
 				array.push(...ingredientsList);
 			}			
 		});
@@ -59,4 +58,38 @@ function getTagsArray(recipes, type) {
 	}
 }
 
-getTagsArray(recipes, "ustensils")
+export function buildTagsDOM() {
+	getTagsArray(recipes, "ingredients").forEach((element) => {
+		const tagIngredients = document.createElement('li');
+		tagIngredients.setAttribute("name",`search-${element}`);
+		tagIngredients.innerText = element;
+		document
+			.querySelector(".filter__list--ingredients")
+			.appendChild(tagIngredients);
+	});
+	getTagsArray(recipes, "appliance").forEach((element) => {
+		const tagAppliances = document.createElement('li');
+		tagAppliances.setAttribute("name", `search-${element}`);
+		tagAppliances.innerText = element;
+		document
+			.querySelector(".filter__list--appliances")
+			.appendChild(tagAppliances);
+	});
+	getTagsArray(recipes, "ustensils").forEach((element) => {
+		const tagUstensils = document.createElement('li');
+		tagUstensils.setAttribute("name", `search-${element}`);
+		tagUstensils.innerText = element;
+		document
+			.querySelector(".filter__list--ustensils")
+			.appendChild(tagUstensils);
+	});
+}
+
+/**
+ * tags Container events
+ */
+const filterZone = document.querySelector(".filter");
+
+filterZone.addEventListener("click", function(event) {
+	event.target.
+})
