@@ -1,4 +1,3 @@
-//à mettre dans components
 .tag-container {
 	width: 100%;
 }
@@ -20,7 +19,7 @@
 	&__container--ingredients {}
 
 	&__btn {
-		margin: 20px 20px 20px 0;
+		margin: 20px 20px 0 0;
 		height: 69px;
 		width: 170px;
 		border-radius: 5px;
@@ -53,15 +52,47 @@
 
 	&__input--ingredients {}
 
-	&__arrow {}
+	&__arrow {
+		transform: rotate(180deg);
+	}
 
-	&__collapse {}
+	&__collapse {
+		display: none;
+		width: 400px;
+		max-height: 330px;
+		margin:-5px 20px 20px 0;
+		border-radius: 0 0 5px 5px;
+		overflow-y: auto;
+		padding: 15px;
+	}
 
-	&__collapse--ingredients {}
+	&__collapse--ingredients {
+		background-color: $clr-blue;
+	}
 
-	&__list {}
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		column-gap: 20px;
+		color: #fff;
+		font-size: 1.1em;
+		> li {
+			height: 35px;
+			width: 100px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			cursor: pointer;
+		}
+		> li:first-letter {
+			text-transform: capitalize;
+		}
+		>li:hover {
+			font-weight: 600;
+		}
+	}
 
-	&__list--ingredients {}
+		&__list--ingredients {}
 
 	&__container--appliances {}
 
@@ -71,7 +102,9 @@
 
 	&__input--appliances {}
 
-	&__collapse--appliances {}
+	&__collapse--appliances {
+		background-color: $clr-green;
+	}
 
 	&__list--appliances {}
 
@@ -83,7 +116,9 @@
 
 	&__input--ustensils {}
 
-	&__collapse--ustensils {}
+	&__collapse--ustensils {
+		background-color: $clr-orange;
+	}
 
 	&__list--ustensils {}
 }

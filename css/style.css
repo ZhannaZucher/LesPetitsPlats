@@ -97,7 +97,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 .filter__btn {
-  margin: 20px 20px 20px 0;
+  margin: 20px 20px 0 0;
   height: 69px;
   width: 170px;
   border-radius: 5px;
@@ -145,10 +145,57 @@ h1, h2, h3, h4, h5, h6 {
 .filter__input::placeholder {
   color: inherit;
 }
+.filter__arrow {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+.filter__collapse {
+  display: none;
+  width: 400px;
+  max-height: 330px;
+  margin: -5px 20px 20px 0;
+  border-radius: 0 0 5px 5px;
+  overflow-y: auto;
+  padding: 15px;
+}
+.filter__collapse--ingredients {
+  background-color: #3282F7;
+}
+.filter__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  -webkit-column-gap: 20px;
+     -moz-column-gap: 20px;
+          column-gap: 20px;
+  color: #fff;
+  font-size: 1.1em;
+}
+.filter__list > li {
+  height: 35px;
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  cursor: pointer;
+}
+.filter__list > li:first-letter {
+  text-transform: capitalize;
+}
+.filter__list > li:hover {
+  font-weight: 600;
+}
 .filter__btn--appliances {
   background-color: #68D9A4;
 }
+.filter__collapse--appliances {
+  background-color: #68D9A4;
+}
 .filter__btn--ustensils {
+  background-color: #ED6454;
+}
+.filter__collapse--ustensils {
   background-color: #ED6454;
 }
 .card {
@@ -303,6 +350,7 @@ body {
      -moz-column-gap: 4%;
           column-gap: 4%;
   row-gap: 30px;
+  margin-top: 20px;
 }
 @media screen and (max-width: 992px) {
   .recipes-section {
