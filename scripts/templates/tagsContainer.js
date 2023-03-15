@@ -82,10 +82,8 @@ export function buildTagsDOM() {
 const filterIngredientsBtn = document.querySelector(".filter__btn--ingredients");
 const filterAppliancesBtn = document.querySelector(".filter__btn--appliances");
 const filterUstensilsBtn = document.querySelector(".filter__btn--ustensils");
-const filterIngredientsContainer = document.querySelector(".filter__container--ingredients");
-const filterAppliancesContainer = document.querySelector(".filter__container--appliances");
-const filterUstensilsContainer = document.querySelector(".filter__container--ustensils");
-
+//const closeBtnIngredients = document.querySelector(".filter__arrow--ingredients");
+const closeBtn = document.querySelectorAll(".filter__arrow");
 /**
  * permet d'ouvrir la liste de tags filtrants
  * @param {string} element collapsibles "ingrédients", "appliances", "ustensils"
@@ -94,17 +92,24 @@ function openFilter(element) {
 	element.nextElementSibling.style.display = "block";
 	element.style.width = "400px";
 	element.lastElementChild.style.transform = "rotate(0deg)";
+	element.classList.add("active");
 }
 
 window.addEventListener("click", function (event) {
 	if (event.target === filterIngredientsBtn) {
 		openFilter(filterIngredientsBtn);
+		closeFilter(filterAppliancesBtn);
+		closeFilter(filterUstensilsBtn);
 	}
 	if (event.target === filterAppliancesBtn) {
 		openFilter(filterAppliancesBtn);
+		closeFilter(filterIngredientsBtn);
+		closeFilter(filterUstensilsBtn);
 	}
 	if (event.target === filterUstensilsBtn) {
 		openFilter(filterUstensilsBtn);
+		closeFilter(filterIngredientsBtn);
+		closeFilter(filterAppliancesBtn);
 	}
 })  
 
@@ -113,17 +118,20 @@ window.addEventListener("click", function (event) {
  * @param {string} element collapsibles "ingrédients", "appliances", "ustensils"
  */
 function closeFilter(element) {
-	element.nextElementSibling.style.display = "none";
-	element.style.width = "170px";
-	element.lastElementChild.style.transform = "rotate(180deg)";
+		element.nextElementSibling.style.display = "none";
+		element.style.width = "170px";
+		element.lastElementChild.style.transform = "rotate(180deg)";
+		element.classList.remove("active");
 }
 
-filterIngredientsContainer.addEventListener("mouseleave", () => {
-	closeFilter(filterIngredientsBtn);
-})
-filterAppliancesContainer.addEventListener("mouseleave", () => {
-	closeFilter(filterAppliancesBtn);
-})
-filterUstensilsContainer.addEventListener("mouseleave", () => {
-	closeFilter(filterUstensilsBtn);
+closeBtn.forEach(btn => {
+	btn.addEventListener("click", function(event) {
+		if (event.target.parentElement === filterIngredientsBtn && filterIngredientsBtn.classList.contains("active")) {
+			closeFilter(filterIngredientsBtn);
+		} else if (event.target.parentElement === filterAppliancesBtn && filterAppliancesBtn.classList.contains("active")) {
+			closeFilter(filterAppliancesBtn);
+		} else if (event.target.parentElement === filterUstensilsBtn && filterUstensilsBtn.classList.contains("active")) {
+			closeFilter(filterUstensilsBtn);
+		}
+	})
 })
