@@ -72,6 +72,50 @@ h1, h2, h3, h4, h5, h6 {
 
 .tag-container {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.selectedTag {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 37px;
+  padding: 0 10px;
+  color: #fff;
+  border-radius: 5px;
+  margin: 20px 10px 0 0;
+}
+
+.tag-ingredients {
+  background-color: #3282F7;
+}
+
+.tag-appliances {
+  background-color: #68D9A4;
+}
+
+.tag-ustensils {
+  background-color: #ED6454;
+}
+
+.closeBtn {
+  margin-left: 5px;
 }
 
 .filter {
@@ -112,7 +156,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 @media screen and (max-width: 768px) {
   .filter__btn {
-    margin-top: 0;
+    margin-top: 20px;
   }
 }
 @media screen and (max-width: 576px) {
