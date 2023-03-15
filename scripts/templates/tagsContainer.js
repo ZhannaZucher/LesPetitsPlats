@@ -1,15 +1,3 @@
-
-/*
-TODO 
-OK A. fonction pour récupérer les arrays de tags :
-OK 1. parcourrir les recettes et récupérer les ingrédients / appliances /ustensils dans 3 tableaux
-OK 2. supprimer les doublons dans tableaux avec Array.from(new Set(array avec doublons)) 
-
-B. fonction qui crée la structure DOM  pour chaque tags' container
-1. parcourrir les tableaux des tags récupérés et les enrober en <li></li>
-2. append tous les <li></li> à leurs containers respectifs
-*/
-
 import { recipes } from "../../data/recipes.js";
 
 /**
@@ -58,6 +46,9 @@ function getTagsArray(recipes, type) {
 	}
 }
 
+/**
+ * permet de construire la structure DOM de la liste des tags 
+ */
 export function buildTagsDOM() {
 	getTagsArray(recipes, "ingredients").forEach((element) => {
 		const tagIngredients = document.createElement('li');
@@ -86,10 +77,53 @@ export function buildTagsDOM() {
 }
 
 /**
- * tags Container events
+ * Récupération des éléments DOM
  */
-const filterZone = document.querySelector(".filter");
+const filterIngredientsBtn = document.querySelector(".filter__btn--ingredients");
+const filterAppliancesBtn = document.querySelector(".filter__btn--appliances");
+const filterUstensilsBtn = document.querySelector(".filter__btn--ustensils");
+const filterIngredientsContainer = document.querySelector(".filter__container--ingredients");
+const filterAppliancesContainer = document.querySelector(".filter__container--appliances");
+const filterUstensilsContainer = document.querySelector(".filter__container--ustensils");
 
-filterZone.addEventListener("click", function(event) {
-	event.target.
+/**
+ * permet d'ouvrir la liste de tags filtrants
+ * @param {string} element collapsibles "ingrédients", "appliances", "ustensils"
+ */
+function openFilter(element) {
+	element.nextElementSibling.style.display = "block";
+	element.style.width = "400px";
+	element.lastElementChild.style.transform = "rotate(0deg)";
+}
+
+window.addEventListener("click", function (event) {
+	if (event.target === filterIngredientsBtn) {
+		openFilter(filterIngredientsBtn);
+	}
+	if (event.target === filterAppliancesBtn) {
+		openFilter(filterAppliancesBtn);
+	}
+	if (event.target === filterUstensilsBtn) {
+		openFilter(filterUstensilsBtn);
+	}
+})  
+
+/**
+ * permet d'ouvrir la liste de tags filtrants
+ * @param {string} element collapsibles "ingrédients", "appliances", "ustensils"
+ */
+function closeFilter(element) {
+	element.nextElementSibling.style.display = "none";
+	element.style.width = "170px";
+	element.lastElementChild.style.transform = "rotate(180deg)";
+}
+
+filterIngredientsContainer.addEventListener("mouseleave", () => {
+	closeFilter(filterIngredientsBtn);
+})
+filterAppliancesContainer.addEventListener("mouseleave", () => {
+	closeFilter(filterAppliancesBtn);
+})
+filterUstensilsContainer.addEventListener("mouseleave", () => {
+	closeFilter(filterUstensilsBtn);
 })
