@@ -52,7 +52,7 @@ function getTagsArray(recipes, type) {
 export function buildTagsDOM() {
 	getTagsArray(recipes, "ingredients").forEach((element) => {
 		const tagIngredients = document.createElement('li');
-		tagIngredients.setAttribute("name",`search-${element}`);
+		tagIngredients.setAttribute("value",`${element}`);
 		tagIngredients.innerText = element;
 		document
 			.querySelector(".filter__list--ingredients")
@@ -82,7 +82,6 @@ export function buildTagsDOM() {
 const filterIngredientsBtn = document.querySelector(".filter__btn--ingredients");
 const filterAppliancesBtn = document.querySelector(".filter__btn--appliances");
 const filterUstensilsBtn = document.querySelector(".filter__btn--ustensils");
-//const closeBtnIngredients = document.querySelector(".filter__arrow--ingredients");
 const closeBtn = document.querySelectorAll(".filter__arrow");
 /**
  * permet d'ouvrir la liste de tags filtrants
