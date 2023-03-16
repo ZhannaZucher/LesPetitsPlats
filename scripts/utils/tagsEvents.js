@@ -1,13 +1,8 @@
-/*TODO ici :
-gestion des événements relatifs aux tags:
-1. onclick sul le tag dans la liste on injecte le tag dans la barre réservée aux tags selectionnés
-+ on ajoute la croix
-+ attr "selected"?
-2. onclick sur le tag selectionné on le vire de la barre de tags sélectionnés
-3. input on tape char et la liste des tags est actualisée
-on supprime =>idem
-*/
-
+/**
+ * permet de construire le DOM pour le tag selectionné
+ * @param {string} tagtype type de liste de tags : ingrédients, appliances, ustensils
+ * @param {string} tag 
+ */
 const buildTagTemplate = (tagtype, tag) => {
 	const closeIcon = document.createElement("img");
 	closeIcon.setAttribute("src", "/assets/close.svg");
@@ -21,6 +16,9 @@ const buildTagTemplate = (tagtype, tag) => {
 	document.querySelector(".tag-container").appendChild(tag);
 }
 
+/**
+ * permet d'injecter le tag selectionné dans la barre des tags sélectionnés
+ */
 export function displayTag() {
 	const tagList = document.querySelectorAll(".filter__list li");
 	tagList.forEach((item) => item.addEventListener("click", (event) => {
@@ -40,3 +38,19 @@ export function displayTag() {
 	}));
 }
 
+/**
+ * permet de l'enlever les tags selectionnés de la barre des tags selectionnés  
+ */
+function unselectTags() {
+	const selectedTagsBar = document.querySelector(".tag-container");
+	selectedTagsBar.addEventListener("click", function(event) {
+		if ( event.target.closest(".closeBtn")) {
+			console.log(event.target.closest);
+			const unselectTag = event.target.parentNode;
+			selectedTagsBar.removeChild(unselectTag);
+			unselectTag.classList.remove("selectedTag");
+		}
+	})
+}
+
+unselectTags()
