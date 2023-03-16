@@ -47,8 +47,6 @@
 		}
 	}
 
-	&__container--ingredients {}
-
 	&__btn {
 		margin: 20px 20px 0 0;
 		height: 69px;
@@ -80,8 +78,6 @@
 		&__input::placeholder{
 			color: inherit;
 		}
-
-	&__input--ingredients {}
 
 	&__arrow {
 		transform: rotate(180deg);
@@ -123,33 +119,19 @@
 		}
 	}
 
-		&__list--ingredients {}
-
-	&__container--appliances {}
-
 	&__btn--appliances {
 		background-color: $clr-green;
 	}
-
-	&__input--appliances {}
 
 	&__collapse--appliances {
 		background-color: $clr-green;
 	}
 
-	&__list--appliances {}
-
-	&__container--ustensils {}
-
 	&__btn--ustensils {
 		background-color: $clr-orange;
 	}
 
-	&__input--ustensils {}
-
 	&__collapse--ustensils {
 		background-color: $clr-orange;
 	}
-
-	&__list--ustensils {}
 }
