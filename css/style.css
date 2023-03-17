@@ -408,4 +408,9 @@ body {
     grid-template-columns: repeat(1, 1fr);
     row-gap: 20px;
   }
+}
+
+.noresults__container p {
+  text-align: center;
+  margin-top: 40px;
 }/*# sourceMappingURL=style.css.map */
