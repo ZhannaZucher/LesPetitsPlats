@@ -11,38 +11,35 @@ function getTagsArray(recipes, type) {
 	let arrayCleaned = [];
 
 	switch (type) {
-		case "ingredients": 
-		recipes.forEach(recipe => {
-			if (recipe.ingredients.length) {
-				const ingredientsList = recipe.ingredients.map((ingredient) => ingredient.ingredient.toLowerCase());
-				array.push(...ingredientsList);
-			}			
-		});
-		// suppression de doublons
-		arrayCleaned = Array.from(new Set(array));
-		return arrayCleaned;
-		
-		case "appliance": 
-		recipes.forEach(recipe => {
-			if(recipe.appliance.length) {
-				const appliancesList = recipe.appliance;
-				array.push(appliancesList);
-			}
-		});
-		// suppression de doublons
-		arrayCleaned = Array.from(new Set(array));
-		return arrayCleaned;
+		case "ingredients":
+			recipes.forEach(recipe => {
+				if (recipe.ingredients.length) {
+					const ingredientsList = recipe.ingredients.map((ingredient) => ingredient.ingredient.toLowerCase());
+					array.push(...ingredientsList);
+				}
+			});
+			arrayCleaned = Array.from(new Set(array));
+			return arrayCleaned;
+
+		case "appliance":
+			recipes.forEach(recipe => {
+				if (recipe.appliance.length) {
+					const appliancesList = recipe.appliance;
+					array.push(appliancesList);
+				}
+			});
+			arrayCleaned = Array.from(new Set(array));
+			return arrayCleaned;
 
 		case "ustensils":
-		recipes.forEach(recipe => {
-			if (recipe.ustensils.length) {
-				const ustensilsList = recipe.ustensils.map(ustensil => ustensil);
-				array.push(...ustensilsList);
-			}
-		});
-		// suppression de doublons
-		arrayCleaned = Array.from(new Set(array));
-		return arrayCleaned;
+			recipes.forEach(recipe => {
+				if (recipe.ustensils.length) {
+					const ustensilsList = recipe.ustensils.map(ustensil => ustensil);
+					array.push(...ustensilsList);
+				}
+			});
+			arrayCleaned = Array.from(new Set(array));
+			return arrayCleaned;
 	}
 }
 
@@ -52,7 +49,7 @@ function getTagsArray(recipes, type) {
 export function buildTagsDOM() {
 	getTagsArray(recipes, "ingredients").forEach((element) => {
 		const tagIngredients = document.createElement('li');
-		tagIngredients.setAttribute("value",`${element}`);
+		tagIngredients.setAttribute("value", `${element}`);
 		tagIngredients.innerText = element;
 		document
 			.querySelector(".filter__list--ingredients")
@@ -77,12 +74,18 @@ export function buildTagsDOM() {
 }
 
 /**
- * Récupération des éléments DOM
+ * Gestion des collapsibles
+ * Récupération des éléments DOM pour la gestion des événenements
  */
 const filterIngredientsBtn = document.querySelector(".filter__btn--ingredients");
 const filterAppliancesBtn = document.querySelector(".filter__btn--appliances");
 const filterUstensilsBtn = document.querySelector(".filter__btn--ustensils");
 const closeBtn = document.querySelectorAll(".filter__arrow");
+const inputIgredients = document.querySelector(".filter__input--ingredients");
+const inputAppliances = document.querySelector(".filter__input--appliances");
+const inputUstensils = document.querySelector(".filter__input--ustensils");
+const tagInputs = [inputIgredients, inputAppliances, inputUstensils];
+
 /**
  * permet d'ouvrir la liste de tags filtrants
  * @param {string} element collapsibles "ingrédients", "appliances", "ustensils"
@@ -100,31 +103,49 @@ window.addEventListener("click", function (event) {
 		closeFilter(filterAppliancesBtn);
 		closeFilter(filterUstensilsBtn);
 	}
-	if (event.target === filterAppliancesBtn) {
+	else if (event.target === filterAppliancesBtn) {
 		openFilter(filterAppliancesBtn);
 		closeFilter(filterIngredientsBtn);
 		closeFilter(filterUstensilsBtn);
 	}
-	if (event.target === filterUstensilsBtn) {
+	else if (event.target === filterUstensilsBtn) {
 		openFilter(filterUstensilsBtn);
 		closeFilter(filterIngredientsBtn);
 		closeFilter(filterAppliancesBtn);
 	}
-})  
+})
+
+tagInputs.forEach(input => {
+	input.addEventListener("focus", function (event) {
+		if (event.target === inputIgredients) {
+			openFilter(filterIngredientsBtn);
+			closeFilter(filterAppliancesBtn);
+			closeFilter(filterUstensilsBtn);
+		} else if (event.target === inputAppliances) {
+			openFilter(filterAppliancesBtn);
+			closeFilter(filterIngredientsBtn);
+			closeFilter(filterUstensilsBtn);
+		} else if (event.target === inputUstensils) {
+			openFilter(filterUstensilsBtn);
+			closeFilter(filterIngredientsBtn);
+			closeFilter(filterAppliancesBtn);
+		}
+	})
+})
 
 /**
  * permet d'ouvrir la liste de tags filtrants
  * @param {string} element collapsibles "ingrédients", "appliances", "ustensils"
  */
 function closeFilter(element) {
-		element.nextElementSibling.style.display = "none";
-		element.style.width = "170px";
-		element.lastElementChild.style.transform = "rotate(180deg)";
-		element.classList.remove("active");
+	element.nextElementSibling.style.display = "none";
+	element.style.width = "170px";
+	element.lastElementChild.style.transform = "rotate(180deg)";
+	element.classList.remove("active");
 }
 
 closeBtn.forEach(btn => {
-	btn.addEventListener("click", function(event) {
+	btn.addEventListener("click", function (event) {
 		if (event.target.parentElement === filterIngredientsBtn && filterIngredientsBtn.classList.contains("active")) {
 			closeFilter(filterIngredientsBtn);
 		} else if (event.target.parentElement === filterAppliancesBtn && filterAppliancesBtn.classList.contains("active")) {
