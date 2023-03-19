@@ -23,47 +23,53 @@
 		<!-- main search section-->
 		<nav class="searchbar">
 			<form action="#" role="search" class="searchbar__form" aria-label="Rechercher sur le site">
-				<input type="search" class="searchbar__input" placeholder="Rechercher une recette">
+				<input type="search" search-filter="recipes.name, recipes.ingredients.ingredient, recipes.description" class="searchbar__input" placeholder="Rechercher une recette">
 				<img src="assets/search.svg" alt="" class="searchbar__icon" aria-hidden="true">
 			</form>
 			
-
 		<!--filter section-->
 			<div class="tag-container"></div>
 			<div class="filter">
 				<div class="filter__container filter__container--ingredients">
 					<button class="filter__btn filter__btn--ingredients">
 						<input type="text" class="filter__input filter__input--ingredients" placeholder="Ingrédients">
-						<img src="assets/arrow.svg" alt="" class="filter__arrow" aria-hidden="true">
+						<img src="assets/arrow.svg" alt="" class="filter__arrow">
 					</button>
 					<div class="filter__collapse filter__collapse--ingredients">
-						<ul class="filter__list filter__list--ingredients"></ul>
+						<ul class="filter__list filter__list--ingredients" id="list-ingredients"></ul>
 					</div>
 				</div>
 				<div class="filter__container filter__container--appliances">
 					<button class="filter__btn filter__btn--appliances">
 						<input type="text" class="filter__input filter__input--appliances" placeholder="Appareils">
-						<img src="assets/arrow.svg" alt="" class="filter__arrow" aria-hidden="true">
+						<img src="assets/arrow.svg" alt="" class="filter__arrow">
 					</button>
 					<div class="filter__collapse filter__collapse--appliances">
-						<ul class="filter__list filter__list--appliances"></ul>
+						<ul class="filter__list filter__list--appliances" id="list-appliances"></ul>
 					</div>
 				</div>
 				<div class="filter__container filter__container--ustensils">
 					<button class="filter__btn filter__btn--ustensils">
 						<input type="text" class="filter__input filter__input--ustensils" placeholder="Ustensiles">
-						<img src="assets/arrow.svg" alt="" class="filter__arrow" aria-hidden="true">
+						<img src="assets/arrow.svg" alt="" class="filter__arrow">				
 					</button>
 					<div class="filter__collapse filter__collapse--ustensils">
-						<ul class="filter__list filter__list--ustensils"></ul>
+						<ul class="filter__list filter__list--ustensils" id="list-ustensils"></ul>
 					</div>
 				</div>
 			</div>
 		</nav>
 		<!--main section-->
 		<main class="recipes-section">
+			<div class="noresults__container">
+				<p class="noresults__message">« Aucune recette ne correspond à votre critère… vous pouvez
+				chercher « tarte aux pommes », « poisson », etc</p>
+			</div>
 		</main>
 	</div>
 	<script type="module" src="scripts/index.js"></script>
+	<script type="module" src="scripts/utils/searchEngine.js"></script>
+	<script type="module" src="scripts/utils/searchEvents.js"></script>
+	
 </body>
 </html>
