@@ -11,35 +11,35 @@ function getTagsArray(recipes, type) {
 	let arrayCleaned = [];
 
 	switch (type) {
-		case "ingredients":
-			recipes.forEach(recipe => {
-				if (recipe.ingredients.length) {
-					const ingredientsList = recipe.ingredients.map((ingredient) => ingredient.ingredient.toLowerCase());
-					array.push(...ingredientsList);
-				}
-			});
-			arrayCleaned = Array.from(new Set(array));
-			return arrayCleaned;
-
-		case "appliance":
-			recipes.forEach(recipe => {
-				if (recipe.appliance.length) {
-					const appliancesList = recipe.appliance;
-					array.push(appliancesList);
-				}
-			});
-			arrayCleaned = Array.from(new Set(array));
-			return arrayCleaned;
+		case "ingredients": 
+		recipes.forEach(recipe => {
+			if (recipe.ingredients.length) {
+				const ingredientsList = recipe.ingredients.map((ingredient) => ingredient.ingredient.toLowerCase());
+				array.push(...ingredientsList);
+			}			
+		});
+		arrayCleaned = Array.from(new Set(array));
+		return arrayCleaned;
+		
+		case "appliance": 
+		recipes.forEach(recipe => {
+			if(recipe.appliance.length) {
+				const appliancesList = recipe.appliance.toLowerCase();
+				array.push(appliancesList);
+			}
+		});
+		arrayCleaned = Array.from(new Set(array));
+		return arrayCleaned;
 
 		case "ustensils":
-			recipes.forEach(recipe => {
-				if (recipe.ustensils.length) {
-					const ustensilsList = recipe.ustensils.map(ustensil => ustensil);
-					array.push(...ustensilsList);
-				}
-			});
-			arrayCleaned = Array.from(new Set(array));
-			return arrayCleaned;
+		recipes.forEach(recipe => {
+			if (recipe.ustensils.length) {
+				const ustensilsList = recipe.ustensils.map(ustensil => ustensil.toLowerCase());
+				array.push(...ustensilsList);
+			}
+		});
+		arrayCleaned = Array.from(new Set(array));
+		return arrayCleaned;
 	}
 }
 
