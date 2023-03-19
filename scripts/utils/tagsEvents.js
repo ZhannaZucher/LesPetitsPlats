@@ -2,8 +2,9 @@
  * permet de construire le DOM pour le tag selectionné
  * @param {string} tagtype type de liste de tags : ingrédients, appliances, ustensils
  * @param {string} tag 
+ *  @param {string} filterList liste de propriétés à filtrer, séparées par virgule 
  */
-const buildTagTemplate = (tagtype, tag) => {
+const buildTagTemplate = (tagtype, tag, filterList) => {
 	const closeIcon = document.createElement("img");
 	closeIcon.setAttribute("src", "/assets/close.svg");
 	closeIcon.setAttribute("alt", "icon");
@@ -12,7 +13,7 @@ const buildTagTemplate = (tagtype, tag) => {
 	tag.classList.add(tagtype);
 	tag.classList.add("selectedTag");
 	tag.appendChild(closeIcon);
-
+	tag.setAttribute("search-filter", filterList)
 	document.querySelector(".tag-container").appendChild(tag);
 }
 
@@ -26,13 +27,13 @@ export function displayTag() {
 
 	switch (item.closest("ul").id) {
 		case "list-ingredients": 
-			buildTagTemplate("tag-ingredients", tag);
+			buildTagTemplate("tag-ingredients", tag, "recipes.ingredients.ingredient");
 			break;
 		case "list-appliances":
-			buildTagTemplate("tag-appliances", tag);
+			buildTagTemplate("tag-appliances", tag, "recipes.appliance");
 			break;
 		case "list-ustensils":
-			buildTagTemplate("tag-ustensils", tag);
+			buildTagTemplate("tag-ustensils", tag, "recipes.ustensils");
 			break;
 		}				
 	}));
