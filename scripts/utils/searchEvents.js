@@ -62,8 +62,9 @@ export const state = {
 mainSearchInput.addEventListener("input", function (event) {
 	//remplacement d'espaces par chaîne de charactères vides
 	let searchTerm = event.target.value.toLowerCase().replace(/\s/g, ""); 
-	state.setFilter("keyword", searchTerm);
+
 	if (searchTerm.length >= 3) {
+		state.setFilter("keywords", searchTerm);
 		let recipeIdList = search();
 		render(recipeIdList);
 	}
