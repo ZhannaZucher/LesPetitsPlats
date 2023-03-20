@@ -2,6 +2,7 @@ import { recipes } from "../../data/recipes.js";
 import { RecipeCardDOM } from "../templates/recipeCardDOM.js";
 import { state } from "./searchEvents.js";
 
+window.recipes = recipes;
 /**
  * permet de filtrer les recettes sur les critères de recherche récupérés depuis l'objet "state"
  * @return array des ids des recettes correspondantes au critères de recherche
@@ -94,7 +95,6 @@ export function render(recipeIdList) {
 		noFiltersTemplate.buildCardDOM();
 		return;
 	}
-
 //aucun résultat ne correspond aux critères de la recherche
 	if (recipeIdList.length === 0) {
 		resultsContainer.innerHTML = "";
@@ -105,7 +105,7 @@ export function render(recipeIdList) {
 		resultsContainer.style.display = "block";
 		return;
 	} 
-
+	resultsContainer.style.display = "grid";
 	//on remplit le tableau des recettes à afficher avec les recettes correspondantes aux critères de la recherche
 	recipeIdList.forEach(id => resultsFound.push(recipes.filter(recipe => recipe.id === id)));
 	const results = resultsFound.flat();
