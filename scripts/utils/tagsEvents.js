@@ -28,7 +28,7 @@ export function displayTag() {
 
 	//on réalise le clonage profond sur l'élément DOM cliqué
 	tagList.forEach((item) => item.addEventListener("click", (event) => {
-	const tag = event.target.cloneNode(true);
+		const tag = event.target.cloneNode(true);
 
 	switch (item.closest("ul").id) {
 		case "list-ingredients": 
@@ -50,9 +50,10 @@ export function displayTag() {
 		//appel de la fonction search à chaque selection d'un tag onclick et actualisation des recettes affichées
 		let recipeIdList = search();
 		render(recipeIdList);
-	}));
+	}, options));
 }
 
+const options = {"once": true};
 /**
  * permet de l'enlever les tags selectionnés de la barre des tags selectionnés  
  */
