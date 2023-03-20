@@ -1,5 +1,5 @@
 import { recipes } from "../data/recipes.js";
-import { RecipeCardDOM } from "./templates/RecipeCardDOM.js";
+import { RecipeCardDOM } from "./templates/recipeCardDOM.js";
 import { buildTagsDOM } from "./templates/tagsContainer.js";
 import { displayTag } from "./utils/tagsEvents.js";
 
