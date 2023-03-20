@@ -1,5 +1,6 @@
 import { render, search } from "./searchEngine.js";
 import { buildTagsDOM } from "../templates/tagsContainer.js";
+import { recipes } from "../../data/recipes.js";
 
 //éléments DOM:
 const mainSearchInput = document.querySelector(".searchbar__input");
@@ -69,7 +70,10 @@ mainSearchInput.addEventListener("input", function (event) {
 		render(recipeIdList);
 	}
 	if (searchTerm.length < 3) {
-		render([]); //affichage de toutes les recettes de la BDD
+		let recipeIdList = [];
+		recipes.forEach(recipe => recipeIdList.push(recipe.id));
+		render(recipeIdList); //affichage de toutes les recettes de la BDD
+	
 	}
 })
 
