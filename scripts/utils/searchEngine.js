@@ -12,6 +12,7 @@ export function search() {
 		let ingredientsMatched = false;
 		let appliancesMatched = false;
 		let ustensilsMatched = false;
+		let keywordMatched = false; 
 		for (let filterName in state.getFilters()) {
 
 			if (filterName === "ingredientsSelectedTags") {
@@ -55,9 +56,20 @@ export function search() {
 					ustensilsMatched = true;
 				}
 			}
+
+			if (filterName === "keywords") {
+				let selectedKeyword = state.getFilterTypeList(filterName);
+				selectedKeyword.forEach(function (keyword) {
+					if (recipe.name.toLowerCase().includes(keyword) ||
+						recipe.description.toLowerCase().includes(keyword) ||
+						recipe.ingredients.forEach(ingredient => ingredient.ingredient.toLowerCase().includes(keyword))) {
+						keywordMatched = true;
+					}
+				});
+			}
 		}
 		// dans le cas où la recette parcourue correspond à tous les critères de recherche, on ajoute son id dans la liste des recettes correspondantes aux critères de recherche
-		if (ingredientsMatched && appliancesMatched && ustensilsMatched) {
+		if (ingredientsMatched && appliancesMatched && ustensilsMatched && keywordMatched) {
 			recipeIdList.push(recipe.id);
 		}
 	});	
