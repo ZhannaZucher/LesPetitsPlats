@@ -17,7 +17,7 @@ export const state = {
 		ustensilsSelectedTags: [],
 		keywords: [],
 	},
-	//permet de déterminer l'endroit où stocker tel ou tel type de filtre(tag)
+	//permet de déterminer l'endroit(type de array) où stocker tel ou tel type de filtre(tag ou keyword)
 	getFilterTypeList: function (filterName) {
 		if (this.filters.hasOwnProperty(filterName)) {
 			return this.filters[filterName];
@@ -35,7 +35,7 @@ export const state = {
 			}
 		}
 	},
-	//permet d'accéder à la liste de filtres
+	//permet d'accéder à la liste des filtres
 	getFilters: function () {
 		return this.filters;
 	},
@@ -51,6 +51,7 @@ export const state = {
 	unsetFilterByValue: function (filterName, filterValue) {
 		if (this.filters.hasOwnProperty(filterName)) {
 			let filterIndex = this.filters[filterName].indexOf(filterValue);
+			console.log(filterIndex)
 			//si l'élément cherché se trouve bien dans la liste, on l'enlève
 			if (filterIndex !== -1) {
 				this.filters[filterName].splice(filterIndex, 1);
@@ -69,11 +70,16 @@ mainSearchInput.addEventListener("input", function (event) {
 		let recipeIdList = search();
 		render(recipeIdList);
 	}
-	if (searchTerm.length < 3 && !state.isFilterSet()) {
-		let recipeIdList = [];
-		recipes.forEach(recipe => recipeIdList.push(recipe.id));
-		render(recipeIdList); //affichage de toutes les recettes de la BDD
-	
+	if (searchTerm.length < 3) {
+		state.filters.keywords.splice(0,1);
+		if (searchTerm.length < 3 && !state.isFilterSet()) {
+			let recipeIdList = [];
+			recipes.forEach(recipe => recipeIdList.push(recipe.id));
+			render(recipeIdList); //affichage de toutes les recettes de la BDD
+		} else {
+			let recipeIdList = search();
+			render(recipeIdList);
+		}
 	}
 })
 
@@ -84,6 +90,6 @@ tagSearchInputs.forEach((input) => input.addEventListener("input", (event) => {
 		//search tags and display matches
 		console.log("coucou");
 	} else {
-		buildTagsDOM();
+		//
 	}
 }))
