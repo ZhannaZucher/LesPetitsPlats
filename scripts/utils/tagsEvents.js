@@ -13,6 +13,8 @@ const buildTagTemplate = (tagtype, tag) => {
 	closeIcon.setAttribute("alt", "icon");
 	closeIcon.classList.add("closeBtn");
 
+	tag.innerText = tag.innerText.charAt(0).toUpperCase() + tag.innerText.slice(1);
+
 	tag.setAttribute("filter-tag-list", tagtype);
 	tag.classList.add(tagtype);
 	tag.classList.add("selectedTag");
@@ -70,13 +72,13 @@ export function unselectTags() {
 //on enlève le tag de la liste correspondante des tags de l'objet "state"
 			switch (unselectTag.getAttribute("filter-tag-list")) {
 				case "tag-ingredients":
-					state.unsetFilterByValue("ingredientsSelectedTags", unselectTag.innerText);
+					state.unsetFilterByValue("ingredientsSelectedTags", unselectTag.innerText.toLowerCase());
 					break;
 				case "tag-appliances":
-					state.unsetFilterByValue("appliancesSelectedTags", unselectTag.innerText);
+					state.unsetFilterByValue("appliancesSelectedTags", unselectTag.innerText.toLowerCase());
 					break;
 				case "tag-ustensils":
-					state.unsetFilterByValue("ustensilsSelectedTags", unselectTag.innerText);
+					state.unsetFilterByValue("ustensilsSelectedTags", unselectTag.innerText.toLowerCase());
 					break;
 			}
 			//appel de la fonction search à chaque fois que l'on désélectionne un tag onclick et actualisation des recettes affichées
