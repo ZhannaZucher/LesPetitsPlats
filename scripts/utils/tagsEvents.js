@@ -30,7 +30,6 @@ export function displayTag() {
 
 	//on réalise le clonage profond sur l'élément DOM cliqué
 	tagList.forEach((item) => item.addEventListener("click", (event) => {
-		
 		if (!event.target.classList.contains("activeTag")) {
 			const tag = event.target.cloneNode(true);
 			event.target.classList.add("activeTag");
@@ -69,16 +68,35 @@ export function unselectTags() {
 			const unselectTag = event.target.parentNode;
 			selectedTagsBar.removeChild(unselectTag);
 			unselectTag.classList.remove("selectedTag");
+
 //on enlève le tag de la liste correspondante des tags de l'objet "state"
 			switch (unselectTag.getAttribute("filter-tag-list")) {
 				case "tag-ingredients":
 					state.unsetFilterByValue("ingredientsSelectedTags", unselectTag.innerText.toLowerCase());
+					const ingredientsList = document.querySelectorAll("#list-ingredients > li");
+					ingredientsList.forEach((li) => {
+						if (li.getAttribute("value") === unselectTag.getAttribute("value") && li.classList.contains("activeTag")) {
+							li.classList.remove("activeTag");
+						}
+					})
 					break;
 				case "tag-appliances":
 					state.unsetFilterByValue("appliancesSelectedTags", unselectTag.innerText.toLowerCase());
+					const appliancesList = document.querySelectorAll("#list-appliances > li");
+						appliancesList.forEach((li) => {
+						if (li.getAttribute("value") === unselectTag.getAttribute("value") && li.classList.contains("activeTag")) {
+							li.classList.remove("activeTag");
+						}
+					})
 					break;
 				case "tag-ustensils":
 					state.unsetFilterByValue("ustensilsSelectedTags", unselectTag.innerText.toLowerCase());
+					const ustensilsList = document.querySelectorAll("#list-ustensils > li");
+					ustensilsList.forEach((li) => {
+						if (li.getAttribute("value") === unselectTag.getAttribute("value") && li.classList.contains("activeTag")) {
+							li.classList.remove("activeTag");
+						}
+					})
 					break;
 			}
 			//appel de la fonction search à chaque fois que l'on désélectionne un tag onclick et actualisation des recettes affichées
