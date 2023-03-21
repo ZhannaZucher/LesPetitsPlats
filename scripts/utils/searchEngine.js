@@ -2,7 +2,7 @@ import { recipes } from "../../data/recipes.js";
 import { RecipeCardDOM } from "../templates/recipeCardDOM.js";
 import { state } from "./searchEvents.js";
 
-window.recipes = recipes;
+//window.recipes = recipes;
 /**
  * permet de filtrer les recettes sur les critères de recherche récupérés depuis l'objet "state"
  * @return array des ids des recettes correspondantes au critères de recherche
@@ -14,8 +14,8 @@ export function search() {
 		let appliancesMatched = false;
 		let ustensilsMatched = false;
 		let keywordMatched = false; 
-		for (let filterName in state.getFilters()) {
-
+		Object.entries(state.getFilters()).forEach(function(filterArr) {
+			let filterName = filterArr[0];
 			if (filterName === "ingredientsSelectedTags") {
 				let numberOfMatchedIngredients = 0;
 				//on récupère les critères de recherche
@@ -39,7 +39,6 @@ export function search() {
 						numberOfMatchedAppliances++;
 					}
 				});
-				//on vérifie si la recette parcourue correspond à tous les filtres actifs
 				if (numberOfMatchedAppliances === selectedTags.length) {
 					appliancesMatched = true;
 				}
@@ -59,8 +58,13 @@ export function search() {
 			}
 
 			if (filterName === "keywords") {
-				let selectedKeyword = state.getFilterTypeList(filterName);
-				selectedKeyword.forEach(function (keyword) {
+				let selectedKeywordList = state.getFilterTypeList(filterName);
+
+				if (!selectedKeywordList.length) {
+					keywordMatched = true;
+				}
+
+				selectedKeywordList.forEach(function (keyword) {
 					if (recipe.name.toLowerCase().includes(keyword) ||
 						recipe.description.toLowerCase().includes(keyword) ||
 						recipe.ingredients.forEach(ingredient => ingredient.ingredient.toLowerCase().includes(keyword))) {
@@ -68,7 +72,7 @@ export function search() {
 					}
 				});
 			}
-		}
+		});
 		// dans le cas où la recette parcourue correspond à tous les critères de recherche, on ajoute son id dans la liste des recettes correspondantes aux critères de recherche
 		if (ingredientsMatched && appliancesMatched && ustensilsMatched && keywordMatched) {
 			recipeIdList.push(recipe.id);
