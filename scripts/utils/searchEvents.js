@@ -69,7 +69,7 @@ mainSearchInput.addEventListener("input", function (event) {
 		let recipeIdList = search();
 		render(recipeIdList);
 	}
-	if (searchTerm.length < 3) {
+	if (searchTerm.length < 3 && !state.isFilterSet()) {
 		let recipeIdList = [];
 		recipes.forEach(recipe => recipeIdList.push(recipe.id));
 		render(recipeIdList); //affichage de toutes les recettes de la BDD
