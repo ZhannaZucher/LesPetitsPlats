@@ -62,6 +62,9 @@ export function displayTag() {
  * permet de l'enlever les tags selectionnés de la barre des tags selectionnés  
  */
 export function unselectTags() {
+	const ingredientsList = document.querySelectorAll("#list-ingredients > li");
+	const appliancesList = document.querySelectorAll("#list-appliances > li");
+	const ustensilsList = document.querySelectorAll("#list-ustensils > li");
 	const selectedTagsBar = document.querySelector(".tag-container");
 	selectedTagsBar.addEventListener("click", function(event) {
 		if ( event.target.closest(".closeBtn")) {
@@ -73,7 +76,6 @@ export function unselectTags() {
 			switch (unselectTag.getAttribute("filter-tag-list")) {
 				case "tag-ingredients":
 					state.unsetFilterByValue("ingredientsSelectedTags", unselectTag.innerText.toLowerCase());
-					const ingredientsList = document.querySelectorAll("#list-ingredients > li");
 					ingredientsList.forEach((li) => {
 						if (li.getAttribute("value") === unselectTag.getAttribute("value") && li.classList.contains("activeTag")) {
 							li.classList.remove("activeTag");
@@ -82,7 +84,6 @@ export function unselectTags() {
 					break;
 				case "tag-appliances":
 					state.unsetFilterByValue("appliancesSelectedTags", unselectTag.innerText.toLowerCase());
-					const appliancesList = document.querySelectorAll("#list-appliances > li");
 						appliancesList.forEach((li) => {
 						if (li.getAttribute("value") === unselectTag.getAttribute("value") && li.classList.contains("activeTag")) {
 							li.classList.remove("activeTag");
@@ -91,7 +92,6 @@ export function unselectTags() {
 					break;
 				case "tag-ustensils":
 					state.unsetFilterByValue("ustensilsSelectedTags", unselectTag.innerText.toLowerCase());
-					const ustensilsList = document.querySelectorAll("#list-ustensils > li");
 					ustensilsList.forEach((li) => {
 						if (li.getAttribute("value") === unselectTag.getAttribute("value") && li.classList.contains("activeTag")) {
 							li.classList.remove("activeTag");
