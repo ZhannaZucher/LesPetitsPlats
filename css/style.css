@@ -230,6 +230,9 @@ h1, h2, h3, h4, h5, h6 {
 .filter__list > li:hover {
   font-weight: 600;
 }
+.filter__list .hidden {
+  display: none;
+}
 .filter__btn--appliances {
   background-color: #68D9A4;
 }
