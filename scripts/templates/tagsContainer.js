@@ -80,9 +80,6 @@ export function buildTagsDOM() {
 const filterIngredientsBtn = document.querySelector(".filter__btn--ingredients");
 const filterAppliancesBtn = document.querySelector(".filter__btn--appliances");
 const filterUstensilsBtn = document.querySelector(".filter__btn--ustensils");
-const filterIngredientsArrow = document.querySelector(".filter__arrow--ingredients");
-const filterAppliancesArrow = document.querySelector(".filter__arrow--appliances");
-const filterUstensilsArrow = document.querySelector(".filter__arrow--unstensils");
 const closeBtn = document.querySelectorAll(".filter__arrow");
 const inputIgredients = document.querySelector(".filter__input--ingredients");
 const inputAppliances = document.querySelector(".filter__input--appliances");
@@ -101,17 +98,17 @@ function openFilter(element) {
 }
 
 window.addEventListener("click", function (event) {
-	if (event.target === filterIngredientsArrow) {
+	if (event.target === filterIngredientsBtn) {
 		openFilter(filterIngredientsBtn);
 		closeFilter(filterAppliancesBtn);
 		closeFilter(filterUstensilsBtn);
 	}
-	else if (event.target === filterAppliancesArrow) {
+	else if (event.target === filterAppliancesBtn) {
 		openFilter(filterAppliancesBtn);
 		closeFilter(filterIngredientsBtn);
 		closeFilter(filterUstensilsBtn);
 	}
-	else if (event.target === filterUstensilsArrow) {
+	else if (event.target === filterUstensilsBtn) {
 		openFilter(filterUstensilsBtn);
 		closeFilter(filterIngredientsBtn);
 		closeFilter(filterAppliancesBtn);
