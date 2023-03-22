@@ -1,5 +1,5 @@
 import { state } from "./searchEvents.js";
-import { render, search } from "./searchEngine.js";
+import { render, search, renderTags } from "./searchEngine.js";
 
 /**
  * permet de construire le DOM pour le tag selectionné
@@ -55,6 +55,7 @@ export function displayTag() {
 		//appel de la fonction search à chaque selection d'un tag onclick et actualisation des recettes affichées
 		let recipeIdList = search();
 		render(recipeIdList);
+		renderTags(recipeIdList);
 	}));
 }
 
@@ -102,6 +103,7 @@ export function unselectTags() {
 			//appel de la fonction search à chaque fois que l'on désélectionne un tag onclick et actualisation des recettes affichées
 			let recipeIdList = search();
 			render(recipeIdList);
+			renderTags(recipeIdList);
 		}
 	})
 }

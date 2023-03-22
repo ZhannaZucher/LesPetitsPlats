@@ -1,4 +1,4 @@
-import { render, search } from "./searchEngine.js";
+import { render, search, renderTags } from "./searchEngine.js";
 //import { buildTagsDOM } from "../templates/tagsContainer.js";
 import { recipes } from "../../data/recipes.js";
 
@@ -63,11 +63,11 @@ export const state = {
 mainSearchInput.addEventListener("input", function (event) {
 	//remplacement d'espaces par chaîne de charactères vides
 	let searchTerm = event.target.value.toLowerCase().replace(/\s/g, ""); 
-
 	if (searchTerm.length >= 3) {
 		state.setFilter("keywords", searchTerm);
 		let recipeIdList = search();
 		render(recipeIdList);
+		renderTags(recipeIdList);
 	}
 	if (searchTerm.length < 3) {
 		state.filters.keywords.splice(0,1);
@@ -75,10 +75,8 @@ mainSearchInput.addEventListener("input", function (event) {
 			let recipeIdList = [];
 			recipes.forEach(recipe => recipeIdList.push(recipe.id));
 			render(recipeIdList); //affichage de toutes les recettes de la BDD
-		} else {
-			let recipeIdList = search();
-			render(recipeIdList);
-		}
+			renderTags(recipeIdList);
+		} 
 	}
 })
 
