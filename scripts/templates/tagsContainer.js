@@ -6,7 +6,7 @@ import { recipes } from "../../data/recipes.js";
  * @param {string} type ingredients, appliances, ustensils
  * @returns {Array}
  */
-function getTagsArray(recipes, type) {
+export function getTagsArray(recipes, type) {
 	let array = [];
 	let arrayCleaned = [];
 
