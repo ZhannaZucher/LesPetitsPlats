@@ -1,6 +1,7 @@
 import { recipes } from "../../data/recipes.js";
 import { RecipeCardDOM } from "../templates/recipeCardDOM.js";
 import { state } from "./searchEvents.js";
+import { getTagsArray } from "../templates/tagsContainer.js";
 
 //window.recipes = recipes;
 /**
@@ -82,8 +83,7 @@ export function search() {
 }
 
 /**
- * permet de filter la liste de recettes à partir de la liste des id des recettes filtrées et affiche le message "Pas de résultats" dans le cas de la liste d'ids vide
- * @param {{recipe[]}} recipes 
+ * permet de filter la liste de recettes à partir de la liste des id des recettes filtrées et affiche le message "Pas de résultats" dans le cas de la liste d'ids vide 
  * @param {Array.<number>} recipeIdList 
  */
 export function render(recipeIdList) {
@@ -116,3 +116,52 @@ export function render(recipeIdList) {
 	const ResultsTemplate = new RecipeCardDOM(results);
 	ResultsTemplate.buildCardDOM();
 }
+
+/**
+ * Permet de filtrer les tags affichés en fonction des résultats de recherche
+ * @param {Array.<number>} recipeIdList
+ */
+export function renderTags(recipeIdList) {
+	recipeIdList = Array.from(new Set(recipeIdList));
+	const resultsFound = [];
+	recipeIdList.forEach(id => resultsFound.push(recipes.filter(recipe => recipe.id === id)));
+	const results = resultsFound.flat();
+
+// récupération des arrays de tags correspondant à la liste de recettes qui matchent avec les résultats de la recherche
+	const ingredientsList = document.querySelectorAll("#list-ingredients > li");
+	const appliancesList = document.querySelectorAll("#list-appliances > li");
+	const ustensilsList = document.querySelectorAll("#list-ustensils > li");
+	const filteredIngredientsArray = getTagsArray(results, "ingredients");
+	const filteredAppliancesArray = getTagsArray(results, "appliance");
+	const filteredUstensilssArray = getTagsArray(results, "ustensils");
+
+	//reinitialisation de l'affichage
+	ingredientsList.forEach(li => li.classList.remove("hidden"));
+	appliancesList.forEach(li => li.classList.remove("hidden"));
+	ustensilsList.forEach(li => li.classList.remove("hidden"));
+
+	//console.log(filteredIngredientsArray);
+	ingredientsList.forEach(li => {
+		if (!filteredIngredientsArray.includes(li.innerText.toLowerCase())) {
+			//console.log(li.innerText)
+			li.classList.add("hidden");
+		}
+	});
+
+	//console.log(filteredAppliancesArray);
+	appliancesList.forEach(li => {
+		if (!filteredAppliancesArray.includes(li.innerText.toLowerCase())) {
+			//console.log(li.innerText)
+			li.classList.add("hidden");
+		}
+	});
+
+	//console.log(filteredUstensilssArray);
+	ustensilsList.forEach(li => {
+		if (!filteredUstensilssArray.includes(li.innerText.toLowerCase())) {
+			//console.log(li.innerText)
+			li.classList.add("hidden");
+		}
+	});
+}
+
