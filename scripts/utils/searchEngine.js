@@ -10,75 +10,79 @@ import { getTagsArray } from "../templates/tagsContainer.js";
  */
 export function search() {
 	let recipeIdList = [];
-	recipes.forEach(function (recipe) {
+	
+	for (let i = 0; i < recipes.length; i++) {
 		let ingredientsMatched = false;
 		let appliancesMatched = false;
 		let ustensilsMatched = false;
 		let keywordMatched = false; 
-		Object.entries(state.getFilters()).forEach(function(filterArr) {
-			let filterName = filterArr[0];
+
+		for (let filterName in state.getFilters()) {
 			if (filterName === "ingredientsSelectedTags") {
 				let numberOfMatchedIngredients = 0;
 				//on récupère les critères de recherche
 				let selectedTags = state.getFilterTypeList(filterName);
-				selectedTags.forEach(function(selectedTag){
-					if (recipe.ingredients.filter(ingredient => selectedTag === ingredient.ingredient.toLowerCase()).length > 0) {
-						numberOfMatchedIngredients++;
+				for (let j = 0; j < selectedTags.length; j++) {
+					for (let k = 0; k < recipes[i].ingredients.length; k++) {
+						if (recipes[i].ingredients[k].ingredient.toLowerCase() === selectedTags[j]) {
+							numberOfMatchedIngredients++;
+						}
 					}
-				});
+				}
 				//on vérifie si la recette parcourue correspond à tous les filtres actifs
 				if (numberOfMatchedIngredients === selectedTags.length) {
 					ingredientsMatched = true;
 				}
 			}
-
 			if (filterName === "appliancesSelectedTags") {
 				let numberOfMatchedAppliances = 0;
 				let selectedTags = state.getFilterTypeList(filterName);
-				selectedTags.forEach(function (selectedTag) {
-					if (selectedTag === recipe.appliance.toLowerCase()) {
+				for (let j = 0; j < selectedTags.length; j++) {
+					if (selectedTags[j] === recipes[i].appliance.toLowerCase()) {
 						numberOfMatchedAppliances++;
 					}
-				});
+				}
 				if (numberOfMatchedAppliances === selectedTags.length) {
 					appliancesMatched = true;
 				}
 			}
-
 			if (filterName === "ustensilsSelectedTags") {
 				let numberOfMatchedUstensils = 0;
 				let selectedTags = state.getFilterTypeList(filterName);
-				selectedTags.forEach(function (selectedTag) {
-					if (recipe.ustensils.filter(ustensil => selectedTag === ustensil.toLowerCase()).length > 0) {
-						numberOfMatchedUstensils++;
+				for (let j = 0; j < selectedTags.length; j++) {
+					for (let k = 0; k < recipes[i].ustensils.length; k++) {
+						if (recipes[i].ustensils[k].toLowerCase() === selectedTags[j]) {
+							numberOfMatchedUstensils++;
+						}
 					}
-				});
-				if (numberOfMatchedUstensils === selectedTags.length) {
+				}
+				if (numberOfMatchedUstensils === selectedTags.length) {				
 					ustensilsMatched = true;
 				}
 			}
-
 			if (filterName === "keywords") {
 				let selectedKeywordList = state.getFilterTypeList(filterName);
-
+				console.log(selectedKeywordList[0]);
 				if (!selectedKeywordList.length) {
 					keywordMatched = true;
 				}
-
 				selectedKeywordList.forEach(function (keyword) {
-					if (recipe.name.toLowerCase().includes(keyword) ||
-						recipe.description.toLowerCase().includes(keyword) ||
-						recipe.ingredients.forEach(ingredient => ingredient.ingredient.toLowerCase().includes(keyword))) {
+					if (recipes[i].name.toLowerCase().includes(keyword) ||
+						recipes[i].description.toLowerCase().includes(keyword) ||
+						recipes[i].ingredients.forEach(ingredient => ingredient.ingredient.toLowerCase().includes(keyword))) {
 						keywordMatched = true;
 					}
 				});
 			}
-		});
+		}
 		// dans le cas où la recette parcourue correspond à tous les critères de recherche, on ajoute son id dans la liste des recettes correspondantes aux critères de recherche
 		if (ingredientsMatched && appliancesMatched && ustensilsMatched && keywordMatched) {
-			recipeIdList.push(recipe.id);
+			console.log(ingredientsMatched && appliancesMatched && ustensilsMatched && keywordMatched);
+			recipeIdList.push(recipes[i].id);
+			console.log(recipeIdList);
+			
 		}
-	});	
+	}
 	return recipeIdList;
 }
 
