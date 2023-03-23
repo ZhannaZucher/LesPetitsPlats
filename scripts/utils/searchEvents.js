@@ -44,7 +44,7 @@ export const state = {
 		let keyword = this.filters.keywords[0] ? this.filters.keywords[0] : "" ;
 		return this.filters.ingredientsSelectedTags.length !== 0
 			|| this.filters.appliancesSelectedTags.length !== 0
-			|| this.filters.ingredientsSelectedTags.length !== 0
+			|| this.filters.ustensilsSelectedTags.length !== 0
 			|| keyword.length >= 3;
 	},
 	//permet d'enlever de la liste correspondante un tag déselectionné
