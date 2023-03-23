@@ -62,28 +62,40 @@ export function search() {
 			}
 			if (filterName === "keywords") {
 				let selectedKeywordList = state.getFilterTypeList(filterName);
-				console.log(selectedKeywordList[0]);
 				if (!selectedKeywordList.length) {
 					keywordMatched = true;
-				}
-				selectedKeywordList.forEach(function (keyword) {
+				} if (selectedKeywordList.length) {
+					let keyword = selectedKeywordList[0];
 					if (recipes[i].name.toLowerCase().includes(keyword) ||
 						recipes[i].description.toLowerCase().includes(keyword) ||
-						recipes[i].ingredients.forEach(ingredient => ingredient.ingredient.toLowerCase().includes(keyword))) {
+						hasIngredientMatched(recipes[i], keyword)
+						) {
 						keywordMatched = true;
 					}
-				});
+				}
 			}
 		}
 		// dans le cas où la recette parcourue correspond à tous les critères de recherche, on ajoute son id dans la liste des recettes correspondantes aux critères de recherche
 		if (ingredientsMatched && appliancesMatched && ustensilsMatched && keywordMatched) {
-			console.log(ingredientsMatched && appliancesMatched && ustensilsMatched && keywordMatched);
-			recipeIdList.push(recipes[i].id);
-			console.log(recipeIdList);
-			
+			recipeIdList.push(recipes[i].id);			
 		}
 	}
 	return recipeIdList;
+}
+
+/**
+ * permet de savoir si la recette donnée contient le keyword parmi ses ingrédients
+ * @param {Object} recipe 
+ * @param {string} keyword 
+ * @returns boolean
+ */
+function hasIngredientMatched(recipe, keyword) {
+	for (let i = 0; i < recipe.ingredients.length; i++) {
+		if (recipe.ingredients[i].ingredient.toLowerCase() === keyword) {
+			return true;
+		}
+		return false;
+	}
 }
 
 /**
