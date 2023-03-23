@@ -135,33 +135,23 @@ export function renderTags(recipeIdList) {
 	const filteredAppliancesArray = getTagsArray(results, "appliance");
 	const filteredUstensilssArray = getTagsArray(results, "ustensils");
 
+	displayMatchingTags(ingredientsList, filteredIngredientsArray);
+	displayMatchingTags(appliancesList, filteredAppliancesArray);
+	displayMatchingTags(ustensilsList, filteredUstensilssArray);
+}
+
+/**
+ * Permet de comparer la liste de tags avec la liste des tags concernés par les résultats de recherche et afficher uniqement les tags correspondant aux résultats
+ * @param {Array} tagsList 
+ * @param {Array} matchingTags 
+ */
+function displayMatchingTags(tagsList, matchingTags) {
 	//reinitialisation de l'affichage
-	ingredientsList.forEach(li => li.classList.remove("hidden"));
-	appliancesList.forEach(li => li.classList.remove("hidden"));
-	ustensilsList.forEach(li => li.classList.remove("hidden"));
-
-	//console.log(filteredIngredientsArray);
-	ingredientsList.forEach(li => {
-		if (!filteredIngredientsArray.includes(li.innerText.toLowerCase())) {
-			//console.log(li.innerText)
-			li.classList.add("hidden");
-		}
-	});
-
-	//console.log(filteredAppliancesArray);
-	appliancesList.forEach(li => {
-		if (!filteredAppliancesArray.includes(li.innerText.toLowerCase())) {
-			//console.log(li.innerText)
-			li.classList.add("hidden");
-		}
-	});
-
-	//console.log(filteredUstensilssArray);
-	ustensilsList.forEach(li => {
-		if (!filteredUstensilssArray.includes(li.innerText.toLowerCase())) {
-			//console.log(li.innerText)
+	tagsList.forEach(li => li.classList.remove("hidden"));
+	//affichage des tags correspondants
+	tagsList.forEach(li => {
+		if (!matchingTags.includes(li.innerText.toLowerCase())) {
 			li.classList.add("hidden");
 		}
 	});
 }
-
