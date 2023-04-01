@@ -9,7 +9,7 @@ import { render, search, renderTags } from "./searchEngine.js";
  */
 const buildTagTemplate = (tagtype, tag) => {
 	const closeIcon = document.createElement("img");
-	closeIcon.setAttribute("src", "/assets/close.svg");
+	closeIcon.setAttribute("src", "assets/close.svg");
 	closeIcon.setAttribute("alt", "icon");
 	closeIcon.classList.add("closeBtn");
 
