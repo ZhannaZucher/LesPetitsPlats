@@ -1,5 +1,4 @@
 import { render, search, renderTags } from "./searchEngine.js";
-//import { buildTagsDOM } from "../templates/tagsContainer.js";
 import { recipes } from "../../data/recipes.js";
 
 //éléments DOM:

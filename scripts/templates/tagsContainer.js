@@ -134,7 +134,7 @@ tagInputs.forEach(input => {
 })
 
 /**
- * permet d'ouvrir la liste de tags filtrants
+ * permet de fermer la liste de tags filtrants
  * @param {string} element collapsibles "ingrédients", "appliances", "ustensils"
  */
 function closeFilter(element) {

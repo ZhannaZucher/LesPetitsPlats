@@ -3,7 +3,6 @@ import { RecipeCardDOM } from "../templates/recipeCardDOM.js";
 import { state } from "./searchEvents.js";
 import { getTagsArray } from "../templates/tagsContainer.js";
 
-//window.recipes = recipes;
 /**
  * permet de filtrer les recettes sur les critères de recherche récupérés depuis l'objet "state"
  * @return array des ids des recettes correspondantes au critères de recherche
